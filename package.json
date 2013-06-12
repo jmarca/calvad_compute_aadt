@@ -1,0 +1,14 @@
+{
+  "name": "calvad_compute_aadt",
+  "version": "0.0.1",
+  "description": "Compute the AADT for some CalVAD unit of analysis (detector, area, freeway, etc)",
+  "keywords": [],
+  "author": "James E. Marca <jmarca@translab.its.uci.edu>",
+  "repository": { "type": "git", "url": "git://github.com/jmarca/calvad_compute_aadt.git" },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "index"
+}
