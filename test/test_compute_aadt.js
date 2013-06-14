@@ -107,6 +107,8 @@ describe('compute_aadt',function(){
                                                        rounded.should.eql(Math.round(expected_result[fwy].hh*10))
                                                        rounded = Math.round(result.not_hh*10)
                                                        rounded.should.eql(Math.round(expected_result[fwy].not_hh*10))
+                                                       // returned task should not contain outliers
+                                                       result.should.not.have.property('outliers')
                                                        return null
                                                    })
                                             done()
