@@ -36,7 +36,7 @@ describe('compute_aadt',function(){
                                         })
                        })
        })
-    it('should properly compute aadt from hourly file, take two'
+    it('should properly compute aadt from hourly file, take two, with outliers'
       ,function(done){
            var task={file:'./test/files/hourly/2008/133/154.json'}
            fs.readFile(task.file
@@ -54,14 +54,20 @@ describe('compute_aadt',function(){
                                             cbtask.aadt['280'].should.have.property('n')
                                             var rounded = Math.round(cbtask.aadt['280'].n)
                                             rounded.should.eql(7867433)
-                                            // flat data should be shorter than starting
+                                            // flat data should be
+                                            // shorter than starting,
+                                            // because we have
+                                            // outliers in this file
                                             var data = []
                                             _.each(cbtask.data.features
                                                   ,function(feature){
                                                        data.push(feature.properties.data)
                                                    });
                                             data = _.flatten(data,true)
-                                            data.length.should.be.above(cbtask.flatdata.length - 1)
+                                            data.length.should.eql(cbtask.flatdata.length)
+                                            // returned task should contain outliers
+                                            cbtask.aadt['280'].should.have.property('outliers')
+                                            cbtask.aadt['280'].outliers.should.have.property('length',25)
                                             done()
 
                                         })
